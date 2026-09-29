@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGBEC | Rangpur Govt. College Business & Entrepreneurship Club</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind Config -->
+    <script>
+       tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        // === BASE / BACKGROUNDS ===
+        primary: '#0B1220',
+        secondary: '#111827',
+        card: '#1A2235',
+
+        // === BRAND COLORS ===
+        royal: '#2563EB',      // Primary brand - actions, CTAs
+        lightblue: '#3B82F6',  // Secondary brand - highlights, hover
+
+        // === ACCENT COLORS (Purpose-Driven) ===
+        gold: '#F59E0B',       // Prestige - big events, achievements
+        goldLight: '#FBBF24',  // Gold hover variant
+        emerald: '#10B981',    // Growth - success, membership
+
+        // === TEXT ===
+        textPrimary: '#FFFFFF',
+        textSecondary: '#94A3B8',
+
+        // === BORDERS ===
+        bordercustom: '#2D3748',
+      },
+
+      fontFamily: {
+        heading: ['Playfair Display', 'serif'],
+        body: ['Inter', 'sans-serif'],
+      },
+
+      boxShadow: {
+        glow: '0 0 25px rgba(37,99,235,0.25)',
+        goldGlow: '0 0 25px rgba(245,158,11,0.25)',
+        emeraldGlow: '0 0 25px rgba(16,185,129,0.25)',
+      }
+    }
+  }
+}
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0A0F1C; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        .glass-card { background: rgba(26, 34, 53, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(45, 55, 72, 0.5); }
+        .glow-blue { box-shadow: 0 0 25px rgba(37, 99, 235, 0.3); }
+        .glow-gold { box-shadow: 0 0 25px rgba(245, 158, 11, 0.3); }
+        .glow-emerald { box-shadow: 0 0 25px rgba(16, 185, 129, 0.3); }
+        .step-line::after { content: ''; position: absolute; top: 50%; right: -100%; width: 100%; height: 2px; background: #2D3748; z-index: -1; }
+    </style>
+</head>
+<body class="text-white overflow-x-hidden">
+
+    <!---Language Selection Modal -->
+    <div id="langModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+        <div class="text-center p-8 bg-secondary rounded-2xl border border-bordercustom shadow-2xl max-w-md mx-4">
+            <div class="mb-6">
+                <img src="img/business.png" alt="RGBEC Logo" class="w-24 h-24 mx-auto rounded-full border-2 border-royal mb-4 object-cover">
+                <h3 class="text-2xl font-heading font-bold text-lightblue">Welcome to <br> RGC BUSINESS CLUB</h3>
+                <p class="text-gray-400 mt-2 text-sm">Select your preferred language</p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <button onclick="setLang('bn')" class="w-full py-3 px-6 bg-royal hover:bg-lightblue text-white font-bold rounded-lg transition duration-300 flex items-center justify-center gap-2 text-lg">
+                    🇧🇩 বাংলা
+                </button>
+                <button onclick="setLang('en')" class="w-full py-3 px-6 border border-royal text-lightblue hover:bg-royal hover:text-white font-bold rounded-lg transition duration-300 flex items-center justify-center gap-2 text-lg">
+                    🇺🇸 English
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 z-40 bg-primary/90 backdrop-blur-md border-b border-bordercustom">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Combined Logos -->
+                <div class="flex items-center gap-3">
+                    <img style="border-radius: 7px;" src="img/রংপুর_সরকারি_কলেজ.jpg" alt="RGC Crest" class="h-12 w-12 object-contain hidden sm:block">
+                    <img src="img/business.png" alt="RGBEC Logo" class="h-14 w-14 object-contain rounded-full border border-royal/50">
+                    <div class="ml-2">
+                        <h1 class="text-lg font-heading font-bold leading-tight">
+                            <span class="text-white">BUSINESS</span> <span class="text-gold">CLUB</span>
+                        </h1>
+                        <p class="text-[10px] text-gray-400 leading-tight" data-en="Business & Entrepreneurship Club" data-bn="ব্যবসা ও উদ্যোক্তা ক্লাব">Rangpur Govt. Collage</p>
+                    </div>
+                </div>
+                
+                <!-- Nav Items & Lang Toggle -->
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:flex items-center gap-6 text-sm text-gray-300">
+                        <a href="#about" class="hover:text-lightblue transition" data-en="About" data-bn="সম্পর্কে">About</a>
+                        <a href="#wings" class="hover:text-lightblue transition" data-en="Wings" data-bn="উইংস">Wings</a>
+                        <a href="#events" class="hover:text-lightblue transition" data-en="Events" data-bn="ইভেন্ট">Events</a>
+                        <a href="#board" class="hover:text-lightblue transition" data-en="Board" data-bn="বোর্ড">Board</a>
+                    </div>
+                    <button onclick="toggleLang()" id="navLangBtn" class="px-3 py-1 border border-bordercustom rounded-full text-xs font-bold hover:border-royal hover:text-lightblue transition flex items-center gap-1">
+                        <span id="navLangIcon">🇧🇩</span> <span id="navLangText">BN</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15)_0%,transparent_70%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <p class="text-lightblue font-medium tracking-widest uppercase text-sm mb-4" data-en="Rangpur Govt. College" data-bn="রংপুর সরকারি কলেজ">Rangpur Govt. College</p>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold leading-tight mb-6">
+                <span data-en="Business &" data-bn="ব্যবসা ও">Business </span>
+                <span class="text-gold" data-en="Club" data-bn="ক্লাব">Club</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg mb-8" data-en="Empowering Future Entrepreneurs, Leaders & Innovators" data-bn="ভবিষ্যতের উদ্যোক্তা, নেতা ও উদ্ভাবকদের গড়ে তোলা">
+                Empowering Future Entrepreneurs, Leaders & Innovators
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                <a href="#join" class="px-8 py-3.5 bg-royal hover:bg-lightblue text-white font-bold rounded-lg transition duration-300 glow-blue" data-en="Join Us" data-bn="যোগ দিন">Join Us</a>
+                <a href="#activities" class="px-8 py-3.5 border border-gold text-gold hover:bg-gold hover:text-primary font-bold rounded-lg transition duration-300" data-en="Explore Activities" data-bn="কার্যক্রম দেখুন">Explore Activities</a>
+            </div>
+            
+            <!-- Small Stats -->
+            <div class="flex justify-center gap-8 md:gap-16 text-center">
+                <div>
+                    <h3 class="text-3xl font-bold text-white">00+</h3>
+                    <p class="text-gray-400 text-sm" data-en="Business Students" data-bn="ব্যবসা শিক্ষার্থী">Business Students</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-emerald">00+</h3>
+                    <p class="text-gray-400 text-sm" data-en="Active Members" data-bn="সক্রিয় সদস্য">Active Members</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-gold">00+</h3>
+                    <p class="text-gray-400 text-sm" data-en="Annual Events" data-bn="বার্ষিক ইভেন্ট">Annual Events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: About Club -->
+    <section id="about" class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <p class="text-lightblue uppercase tracking-widest text-sm font-bold mb-2" data-en="ABOUT RGBEC" data-bn="RGBEC সম্পর্কে">ABOUT RGBEC</p>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold" data-en="Leadership, Entrepreneurship & Business Impact" data-bn="নেতৃত্ব, উদ্যোক্তা ও ব্যবসায়িক প্রভাব">Leadership, Entrepreneurship & Business Impact</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-gray-400 leading-relaxed" data-en="RGBEC is a student-driven organization dedicated to developing future business leaders, entrepreneurs, and innovators. We believe every student has the potential to become a leader, entrepreneur, or changemaker." data-bn="RGBEC শিক্ষার্থীদের মধ্যে ব্যবসায়িক চিন্তাভাবনা, সমস্যা সমাধান, নেতৃত্ব এবং উদ্যোক্তা মানসিকতা গড়ে তোলার জন্য প্রতিষ্ঠিত। আমরা বিশ্বাস করি প্রত্যেক শিক্ষার্থীর মধ্যে একজন সম্ভাব্য উদ্যোক্তা, নেতা অথবা উদ্ভাবক লুকিয়ে আছে।">
+                        RGBEC is a student-driven organization dedicated to developing future business leaders, entrepreneurs, and innovators. We believe every student has the potential to become a leader, entrepreneur, or changemaker.
+                    </p>
+                </div>
+                <div class="glass-card p-8 rounded-xl border-l-4 border-royal">
+                    <div class="space-y-4 text-gray-300">
+                        <div class="flex justify-between border-b border-bordercustom pb-2">
+                            <span class="text-gray-400" data-en="Founded" data-bn="প্রতিষ্ঠা">Founded</span>
+                            <span class="font-medium">2027</span>
+                        </div>
+                        <div class="flex justify-between border-b border-bordercustom pb-2">
+                            <span class="text-gray-400" data-en="Location" data-bn="অবস্থান">Location</span>
+                            <span class="font-medium" data-en="Rangpur Govt. College" data-bn="রংপুর সরকারি কলেজ">Rangpur Govt. College</span>
+                        </div>
+                        <div class="flex justify-between border-b border-bordercustom pb-2">
+                            <span class="text-gray-400" data-en="Category" data-bn="ক্যাটাগরি">Category</span>
+                            <span class="font-medium" data-en="Student Organization" data-bn="ছাত্র সংগঠন">Student Organization</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block mb-2" data-en="Focus" data-bn="ফোকাস">Focus</span>
+                            <span class="text-lightblue font-medium" data-en="Business • Finance • Marketing • Startup" data-bn="ব্যবসা • ফাইন্যান্স • মার্কেটিং • স্টার্টআপ">Business • Finance • Marketing • Startup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Core Wings (Color-Coded) -->
+    <section id="wings" class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <p class="text-lightblue uppercase tracking-widest text-sm font-bold mb-2" data-en="STRUCTURE" data-bn="কাঠামো">STRUCTURE</p>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold" data-en="Our Four Core Wings" data-bn="আমাদের চারটি মূল উইং">Our Four Core Wings</h2>
+                <div class="w-24 h-1 bg-royal mx-auto mt-4"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Wing 1: Entrepreneurship - Royal Blue -->
+                <div class="glass-card p-6 rounded-xl border-t-4 border-royal hover:border-royal transition duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-royal/20 rounded-lg flex items-center justify-center mb-4 text-lightblue"><i class="fas fa-rocket text-xl"></i></div>
+                    <h3 class="text-xl font-heading font-bold text-white mb-4" data-en="Entrepreneurship" data-bn="উদ্যোক্তা">Entrepreneurship</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Startup Ideas</li><li>Business Model</li><li>Pitch Training</li>" data-bn="<li>স্টার্টআপ আইডিয়া</li><li>বিজনেস মডেল</li><li>পিচ ট্রেনিং</li>">
+                        <li>Startup Ideas</li><li>Business Model</li><li>Pitch Training</li>
+                    </ul>
+                </div>
+                <!-- Wing 2: Finance - Emerald (Growth/Money) -->
+                <div class="glass-card p-6 rounded-xl border-t-4 border-emerald hover:border-emerald transition duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-emerald/20 rounded-lg flex items-center justify-center mb-4 text-emerald"><i class="fas fa-chart-line text-xl"></i></div>
+                    <h3 class="text-xl font-heading font-bold text-white mb-4" data-en="Finance" data-bn="ফাইন্যান্স">Finance</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Financial Literacy</li><li>Budget Planning</li><li>Investment Basics</li>" data-bn="<li>আর্থিক সাক্ষরতা</li><li>বাজেট প্ল্যানিং</li><li>ইনভেস্টমেন্ট ব্যাসিকস</li>">
+                        <li>Financial Literacy</li><li>Budget Planning</li><li>Investment Basics</li>
+                    </ul>
+                </div>
+                <!-- Wing 3: Marketing - Gold (Attention) -->
+                <div class="glass-card p-6 rounded-xl border-t-4 border-gold hover:border-gold transition duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center mb-4 text-gold"><i class="fas fa-bullhorn text-xl"></i></div>
+                    <h3 class="text-xl font-heading font-bold text-white mb-4" data-en="Marketing" data-bn="মার্কেটিং">Marketing</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Branding</li><li>Digital Marketing</li><li>Consumer Psychology</li>" data-bn="<li>ব্র্যান্ডিং</li><li>ডিজিটাল মার্কেটিং</li><li>ভোক্তা মনোবিজ্ঞান</li>">
+                        <li>Branding</li><li>Digital Marketing</li><li>Consumer Psychology</li>
+                    </ul>
+                </div>
+                <!-- Wing 4: Leadership - Light Blue (Vision) -->
+                <div class="glass-card p-6 rounded-xl border-t-4 border-lightblue hover:border-lightblue transition duration-300 hover:scale-105">
+                    <div class="w-12 h-12 bg-lightblue/20 rounded-lg flex items-center justify-center mb-4 text-lightblue"><i class="fas fa-users text-xl"></i></div>
+                    <h3 class="text-xl font-heading font-bold text-white mb-4" data-en="Leadership" data-bn="নেতৃত্ব">Leadership</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Public Speaking</li><li>Networking</li><li>Team Management</li>" data-bn="<li>পাবলিক স্পিকিং</li><li>নেটওয়ার্কিং</li><li>টিম ম্যানেজমেন্ট</li>">
+                        <li>Public Speaking</li><li>Networking</li><li>Team Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: What We Do -->
+    <section id="activities" class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <p class="text-lightblue uppercase tracking-widest text-sm font-bold mb-2" data-en="ACTIVITIES" data-bn="কার্যক্রম">ACTIVITIES</p>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold" data-en="What We Do" data-bn="আমরা যা করি">What We Do</h2>
+                <div class="w-24 h-1 bg-royal mx-auto mt-4"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-xl hover:border-royal transition duration-300">
+                    <h3 class="text-lg font-heading font-bold text-lightblue mb-4" data-en="Business Competitions" data-bn="ব্যবসায়িক প্রতিযোগিতা">Business Competitions</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Business Quiz</li><li>Case Competition</li><li>Presentation Contest</li>" data-bn="<li>বিজনেস কুইজ</li><li>কেস কম্পিটিশন</li><li>প্রেজেন্টেশন কনটেস্ট</li>">
+                        <li>Business Quiz</li><li>Case Competition</li><li>Presentation Contest</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 rounded-xl hover:border-emerald transition duration-300">
+                    <h3 class="text-lg font-heading font-bold text-emerald mb-4" data-en="Startup Development" data-bn="স্টার্টআপ ডেভেলপমেন্ট">Startup Development</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Startup Workshops</li><li>Business Planning</li><li>Idea Validation</li>" data-bn="<li>স্টার্টআপ ওয়ার্কশপ</li><li>বিজনেস প্ল্যানিং</li><li>আইডিয়া ভ্যালিডেশন</li>">
+                        <li>Startup Workshops</li><li>Business Planning</li><li>Idea Validation</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 rounded-xl hover:border-gold transition duration-300">
+                    <h3 class="text-lg font-heading font-bold text-gold mb-4" data-en="Skill Development" data-bn="দক্ষতা উন্নয়ন">Skill Development</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Leadership Training</li><li>Networking</li><li>Communication Skills</li>" data-bn="<li>নেতৃত্ব প্রশিক্ষণ</li><li>নেটওয়ার্কিং</li><li>যোগাযোগ দক্ষতা</li>">
+                        <li>Leadership Training</li><li>Networking</li><li>Communication Skills</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 rounded-xl hover:border-lightblue transition duration-300">
+                    <h3 class="text-lg font-heading font-bold text-lightblue mb-4" data-en="Community Impact" data-bn="সামাজিক প্রভাব">Community Impact</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm" data-en="<li>Financial Awareness</li><li>Youth Programs</li><li>Social Projects</li>" data-bn="<li>আর্থিক সচেতনতা</li><li>যুব প্রোগ্রাম</li><li>সামাজিক প্রকল্প</li>">
+                        <li>Financial Awareness</li><li>Youth Programs</li><li>Social Projects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Flagship Events -->
+    <section id="events" class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <p class="text-gold uppercase tracking-widest text-sm font-bold mb-2" data-en="HIGHLIGHTS" data-bn="হাইলাইটস">HIGHLIGHTS</p>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold" data-en="Flagship Events" data-bn="ফ্ল্যাগশিপ ইভেন্ট">Flagship Events</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mt-4"></div>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-xl text-center hover:border-lightblue transition duration-300">
+                    <i class="fas fa-rocket text-3xl text-lightblue mb-3"></i>
+                    <h4 class="text-xl font-heading font-bold mb-2" data-en="Startup Pitch Competition" data-bn="স্টার্টআপ পিচ কম্পিটিশন">Startup Pitch Competition</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center hover:border-emerald transition duration-300">
+                    <i class="fas fa-briefcase text-3xl text-emerald mb-3"></i>
+                    <h4 class="text-xl font-heading font-bold mb-2" data-en="Case Solving Competition" data-bn="কেস সলভিং কম্পিটিশন">Case Solving Competition</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center hover:border-gold transition duration-300">
+                    <i class="fas fa-microphone-alt text-3xl text-gold mb-3"></i>
+                    <h4 class="text-xl font-heading font-bold mb-2" data-en="Entrepreneurship Summit" data-bn="এন্টারপ্রেনারশিপ সামিট">Entrepreneurship Summit</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center hover:border-royal transition duration-300 sm:col-span-2 lg:col-span-1">
+                    <i class="fas fa-comments text-3xl text-royal mb-3"></i>
+                    <h4 class="text-xl font-heading font-bold mb-2" data-en="Business Debate" data-bn="বিজনেস ডিবেট">Business Debate</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Business Fest -->
+    <section class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="glass-card p-8 md:p-12 rounded-2xl border border-gold/30 glow-gold relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gold text-primary px-6 py-2 font-bold rounded-bl-xl text-sm" data-en="BIGGEST EVENT" data-bn="সবচেয়ে বড় ইভেন্ট">BIGGEST EVENT</div>
+                <h3 class="text-4xl font-heading font-bold text-gold mb-4" data-en="Business Fest" data-bn="বিজনেস ফেস্ট">Business Fest</h3>
+                <p class="text-gray-400 mb-8 max-w-xl" data-en="The largest event of RGBEC featuring competitions, pitches, and industry leaders." data-bn="RGBEC এর সবচেয়ে বড় ইভেন্ট যেখানে আছে প্রতিযোগিতা, পিচ এবং শিল্প নেতা।">
+                    The largest event of RGBEC featuring competitions, pitches, and industry leaders.
+                </p>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-gold"></i> <span data-en="Business Quiz" data-bn="বিজনেস কুইজ">Business Quiz</span></div>
+                    <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-gold"></i> <span data-en="Case Competition" data-bn="কেস কম্পিটিশন">Case Competition</span></div>
+                    <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-gold"></i> <span data-en="Startup Pitch" data-bn="স্টার্টআপ পিচ">Startup Pitch</span></div>
+                    <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-gold"></i> <span data-en="Marketing Challenge" data-bn="মার্কেটিং চ্যালেঞ্জ">Marketing Challenge</span></div>
+                    <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-gold"></i> <span data-en="Business Debate" data-bn="বিজনেস ডিবেট">Business Debate</span></div>
+                    <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check-circle text-gold"></i> <span data-en="Guest Speakers" data-bn="গেস্ট স্পিকার">Guest Speakers</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Membership Journey -->
+    <section class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <p class="text-emerald uppercase tracking-widest text-sm font-bold mb-2" data-en="PROCESS" data-bn="প্রক্রিয়া">PROCESS</p>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold" data-en="Become a Member" data-bn="সদস্য হওন">Become a Member</h2>
+                <div class="w-24 h-1 bg-emerald mx-auto mt-4"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 relative">
+                <!-- Step Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-bordercustom -translate-y-1/2 z-0"></div>
+                
+                <div class="z-10 w-full md:w-auto flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-card border-2 border-royal flex items-center justify-center text-lightblue font-bold text-xl mb-3">1</div>
+                    <h4 class="font-bold text-white" data-en="Register" data-bn="রেজিস্ট্রেশন">Register</h4>
+                </div>
+                <div class="z-10 w-full md:w-auto flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-card border-2 border-royal flex items-center justify-center text-lightblue font-bold text-xl mb-3">2</div>
+                    <h4 class="font-bold text-white" data-en="Orientation" data-bn="ওরিয়েন্টেশন">Orientation</h4>
+                </div>
+                <div class="z-10 w-full md:w-auto flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-card border-2 border-royal flex items-center justify-center text-lightblue font-bold text-xl mb-3">3</div>
+                    <h4 class="font-bold text-white" data-en="Interview" data-bn="ইন্টারভিউ">Interview</h4>
+                </div>
+                <div class="z-10 w-full md:w-auto flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-card border-2 border-royal flex items-center justify-center text-lightblue font-bold text-xl mb-3">4</div>
+                    <h4 class="font-bold text-white" data-en="Training" data-bn="ট্রেনিং">Training</h4>
+                </div>
+                <div class="z-10 w-full md:w-auto flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-emerald flex items-center justify-center text-white font-bold text-xl mb-3 glow-emerald">5</div>
+                    <h4 class="font-bold text-emerald" data-en="Official Membership" data-bn="অফিশিয়াল সদস্যপদ">Official Membership</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Vision & Mission -->
+    <section id="vision" class="py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+            <div class="glass-card p-8 rounded-xl border-t-4 border-royal">
+                <h3 class="text-2xl font-heading font-bold text-lightblue mb-4" data-en="Vision" data-bn="ভিশন">Vision</h3>
+                <p class="text-gray-300 leading-relaxed" data-en="Building Future Business Leaders who will drive economic and social progress." data-bn="ভবিষ্যতের ব্যবসায়িক নেতা তৈরি করা যারা অর্থনৈতিক ও সামাজিক অগ্রগতি নিয়ে আসবে।">
+                    Building Future Business Leaders who will drive economic and social progress.
+                </p>
+            </div>
+            <div class="glass-card p-8 rounded-xl border-t-4 border-gold">
+                <h3 class="text-2xl font-heading font-bold text-gold mb-4" data-en="Mission" data-bn="মিশন">Mission</h3>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-center gap-2"><i class="fas fa-arrow-right text-royal text-xs"></i> <span data-en="Promote Entrepreneurship" data-bn="উদ্যোক্তা উৎসাহিত করা">Promote Entrepreneurship</span></li>
+                    <li class="flex items-center gap-2"><i class="fas fa-arrow-right text-emerald text-xs"></i> <span data-en="Develop Leadership" data-bn="নেতৃত্ব বিকাশ করা">Develop Leadership</span></li>
+                    <li class="flex items-center gap-2"><i class="fas fa-arrow-right text-gold text-xs"></i> <span data-en="Improve Business Literacy" data-bn="ব্যবসায়িক সাক্ষরতা উন্নত করা">Improve Business Literacy</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Executive Board -->
+    <section id="board" class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <p class="text-lightblue uppercase tracking-widest text-sm font-bold mb-2" data-en="TEAM" data-bn="টিম">TEAM</p>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold" data-en="Executive Board" data-bn="এক্সিকিউটিভ বোর্ড">Executive Board</h2>
+                <div class="w-24 h-1 bg-royal mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+                <div class="glass-card p-6 rounded-xl border-t-4 border-royal">
+                    <div class="w-20 h-20 mx-auto bg-bordercustom rounded-full flex items-center justify-center mb-4"><i class="fas fa-user text-2xl text-gray-500"></i></div>
+                    <h4 class="font-bold text-white" data-en="President" data-bn="সভাপতি">President</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-lightblue">
+                    <div class="w-20 h-20 mx-auto bg-bordercustom rounded-full flex items-center justify-center mb-4"><i class="fas fa-user text-2xl text-gray-500"></i></div>
+                    <h4 class="font-bold text-white" data-en="Vice President" data-bn="সহ-সভাপতি">Vice President</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-emerald">
+                    <div class="w-20 h-20 mx-auto bg-bordercustom rounded-full flex items-center justify-center mb-4"><i class="fas fa-user text-2xl text-gray-500"></i></div>
+                    <h4 class="font-bold text-white" data-en="General Secretary" data-bn="সাধারণ সম্পাদক">General Secretary</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-gold">
+                    <div class="w-20 h-20 mx-auto bg-bordercustom rounded-full flex items-center justify-center mb-4"><i class="fas fa-user text-2xl text-gray-500"></i></div>
+                    <h4 class="font-bold text-white" data-en="Treasurer" data-bn="কোষাধ্যক্ষ">Treasurer</h4>
+                </div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-royal">
+                    <div class="w-20 h-20 mx-auto bg-bordercustom rounded-full flex items-center justify-center mb-4"><i class="fas fa-user text-2xl text-gray-500"></i></div>
+                    <h4 class="font-bold text-white" data-en="Department Heads" data-bn="বিভাগীয় প্রধান">Department Heads</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Join Us CTA -->
+    <section id="join" class="py-24 bg-secondary relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(37,99,235,0.2)_0%,transparent_70%)]"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-heading font-bold mb-6">
+                <span class="text-white" data-en="Ready To Lead," data-bn="নেতৃত্ব দিতে প্রস্তুত,">Ready To Lead,</span><br>
+                <span class="text-gold" data-en="Innovate & Grow?" data-bn="উদ্ভাবন ও বিকাশে?">Innovate & Grow?</span>
+            </h2>
+            <p class="text-xl text-gray-400 mb-8" data-en="Become a Member Today" data-bn="আজই সদস্য হোন">Become a Member Today</p>
+            <a href="#" class="inline-block px-10 py-4 bg-emerald hover:bg-emerald/90 text-white font-bold rounded-xl transition duration-300 glow-emerald text-lg" data-en="Join RGBEC" data-bn="RGBEC তে যোগ দিন">Join RGBEC</a>
+        </div>
+    </section>
+
+    <!-- Section 11: Footer -->
+    <footer class="bg-primary border-t border-bordercustom py-12">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 items-center">
+            <!-- Logo & Description -->
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <div class="flex items-center gap-3">
+                    <img style="border-radius: 7px;" src="img/রংপুর_সরকারি_কলেজ.jpg" alt="RGC Crest" class="h-12 w-12 object-contain">
+                    <img style="border-radius: 7px; font-size: larger;" src="img/business.png" alt="RGC Crest" class="h-12 w-12 object-contain ">
+                </div>
+                <p class="text-gray-500 text-sm text-center md:text-left" data-en="Rangpur Govt. College Business & Entrepreneurship Club" data-bn="রংপুর সরকারি কলেজ ব্যবসা ও উদ্যোক্তা ক্লাব">Rangpur Govt. College Business & Entrepreneurship Club</p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="text-center">
+                <h4 class="font-bold text-white mb-4" data-en="Quick Links" data-bn="দ্রুত লিংক">Quick Links</h4>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
+                    <a href="#about" class="hover:text-lightblue transition" data-en="About" data-bn="সম্পর্কে">About</a>
+                    <a href="#wings" class="hover:text-lightblue transition" data-en="Wings" data-bn="উইংস">Wings</a>
+                    <a href="#activities" class="hover:text-lightblue transition" data-en="Activities" data-bn="কার্যক্রম">Activities</a>
+                    <a href="#events" class="hover:text-gold transition" data-en="Events" data-bn="ইভেন্ট">Events</a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="text-center md:text-right">
+                <h4 class="font-bold text-white mb-4" data-en="Contact" data-bn="যোগাযোগ">Contact</h4>
+                <div class="flex justify-center md:justify-end gap-4 mb-3">
+                    <a href="#" class="w-10 h-10 border border-bordercustom rounded-full flex items-center justify-center text-gray-400 hover:border-royal hover:text-lightblue transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 border border-bordercustom rounded-full flex items-center justify-center text-gray-400 hover:border-gold hover:text-gold transition"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.getElementById('langModal').style.display = 'none';
+            updateUI();
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'bn' : 'en';
+            updateUI();
+        }
+
+        function updateUI() {
+            if(currentLang === 'en') {
+                document.getElementById('navLangIcon').innerText = '🇧🇩';
+                document.getElementById('navLangText').innerText = 'BN';
+            } else {
+                document.getElementById('navLangIcon').innerText = '🇺🇸';
+                document.getElementById('navLangText').innerText = 'EN';
+            }
+
+            const elements = document.querySelectorAll('[data-en][data-bn]');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if(text && text.includes('<li>')) {
+                    el.innerHTML = text;
+                } else if(text) {
+                    el.innerText = text;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
